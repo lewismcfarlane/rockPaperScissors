@@ -1,12 +1,12 @@
 let getComputerChoice = () => {
-    let computerChoice;
+    let computerSelection;
     let computerGuess = Math.floor((Math.random()*3))+1;
     if (computerGuess === 1) {
-        computerChoice = "Rock"
+        computerSelection = "Rock"
     } else if (computerGuess === 2) {
-        computerChoice = "Paper"
-    } else computerChoice = "Scissors";
-    console.log(computerChoice);
+        computerSelection = "Paper"
+    } else computerSelection = "Scissors";
+    console.log(computerSelection);
 }
 
 getComputerChoice();
