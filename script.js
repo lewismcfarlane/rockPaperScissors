@@ -1,5 +1,6 @@
+let computerSelection;
+
 let getComputerChoice = () => {
-    let computerSelection;
     let computerGuess = Math.floor((Math.random()*3))+1;
     if (computerGuess === 1) {
         computerSelection = "Rock"
@@ -10,3 +11,4 @@ let getComputerChoice = () => {
 }
 
 getComputerChoice();
+
