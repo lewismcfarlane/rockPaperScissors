@@ -4,7 +4,7 @@ let playerSelection;
 // Function to get players choice
 let getPlayerChoice = () => {
     // USER ENTERS INPUTS BELOW //
-    let userInput = "rock";
+    let userInput = prompt("Rock paper scissors?");
     // USER ENTERS INPUT ABOVE //
     return userInput.toLowerCase();
 }
@@ -38,21 +38,20 @@ let playRound = (computerSelection, playerSelection) => {
     
 }
 
+// Function to play the game for 5 rounds
+let playGame = () => {
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
 
+    playRound(computerSelection, playerSelection);
+    // Console log gives the game results // 
+    console.log(`Player choice: ${playerSelection}`)
+    console.log(`Computer choice: ${computerSelection}`)
+    console.log(playRound(computerSelection, playerSelection))
+    
+}
 
-
-
-
-
-computerSelection = getComputerChoice();
-playerSelection = getPlayerChoice();
-
-console.log(`Player choice: ${playerSelection}`)
-console.log(`Computer choice: ${computerSelection}`)
-
-playRound(computerSelection, playerSelection);
-console.log(playRound(computerSelection, playerSelection))
-
-
+const startGame = document.getElementById("startGameButton");
+startGame.addEventListener("click", playGame);
 
 
