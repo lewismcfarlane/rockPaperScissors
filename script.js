@@ -1,7 +1,6 @@
 let computerSelection;
 let playerSelection;
 
-
 // Function to get players choice
 let getPlayerChoice = () => {
     // USER ENTERS INPUTS BELOW //
@@ -22,7 +21,6 @@ let getComputerChoice = () => {
 
 // Function to play a round of the game
 let playRound = (computerSelection, playerSelection) => {
-
     if (computerSelection === playerSelection) {
         return "It's a tie!";
     }
@@ -46,16 +44,46 @@ Computer choice: ${computerSelection}
 ${result}`)
     
 }
+// Function to group one round and displaying the results to console
+let groupedPlayRound = () => {
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();
+    // playRound(computerSelection, playerSelection);
+    displayResults();
+
+    return playRound(computerSelection, playerSelection);
+}
 
 // Function to play the game for 5 rounds
 let playGame = () => {
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
+    let playerScore = 0;
+    let computerScore = 0;
+    let winner;
+    for (let i = 0; i < 5; i++) {
+        console.log(`Round ${i+1}. Player score: ${playerScore} Computer Score: ${computerScore}`);
+        groupedPlayRound();
+        let result = playRound(computerSelection, playerSelection)
+        if (result === "Player wins!") {
+            playerScore += 1;
+        } 
+        if (result === "Computer wins!") {
+            computerScore += 1;
+        }
+    }
 
-    playRound(computerSelection, playerSelection);
-    displayResults();
-    
+    if (computerScore > playerScore) {
+        winner = "You lost!";
+    } else if (computerScore < playerScore) {
+        winner = "You win!"
+    } else {
+        winner = "It was a tie!"
+    }
+    console.log('');
+    console.log('The final scores are...');
+    console.log(`Player score: ${playerScore} Computer score: ${computerScore}`)
+    console.log(`${winner}`)
 }
+
 
 const startGame = document.getElementById("startGameButton");
 startGame.addEventListener("click", playGame);
