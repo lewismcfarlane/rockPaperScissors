@@ -1,18 +1,29 @@
 let computerSelection;
-// USER ENTERS INPUT BELOW //
-let userInput = "ROCK"
-// USER ENTERS INPUT ABOVE //
-let playerSelection = userInput.toLowerCase();
-console.log(`Player choice: ${playerSelection}`)
+let playerSelection;
+
+
+let getPlayerChoice = () => {
+    // USER ENTERS INPUTS BELOW //
+    let userInput = "rock";
+    // USER ENTERS INPUT ABOVE //
+    return userInput.toLowerCase();
+}
+
+
+
 let getComputerChoice = () => {
     let computerGuess = Math.floor((Math.random()*3))+1;
     if (computerGuess === 1) {
-        computerSelection = "rock"
+        return "rock"
     } else if (computerGuess === 2) {
-        computerSelection = "paper"
-    } else computerSelection = "scissors";
+        return "paper"
+    } else return "scissors";
 }
-let playGame = () => {
+
+let playGame = (computerSelection, playerSelection) => {
+    console.log(`Player choice: ${playerSelection}`)
+    console.log(`Computer choice: ${computerSelection}`)
+
     if (computerSelection === playerSelection) {
         console.log("Tie!")
     }
@@ -32,9 +43,10 @@ let playGame = () => {
 
 
 
-getComputerChoice();
-console.log(`Computer choice: ${computerSelection}`)
-playGame();
+computerSelection = getComputerChoice();
+playerSelection = getPlayerChoice();
+
+playGame(computerSelection, playerSelection);
 
 
 
