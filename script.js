@@ -20,26 +20,29 @@ let getComputerChoice = () => {
 }
 
 // Function to play a round of the game
-let playGame = (computerSelection, playerSelection) => {
+let playRound = (computerSelection, playerSelection) => {
 
     if (computerSelection === playerSelection) {
-        // console.log("Tie!")
         return "It's a tie!";
     }
     if ((computerSelection === "rock" && playerSelection === "scissors") || (
         computerSelection === "scissors" && playerSelection === "paper") || (
         computerSelection === "paper" && playerSelection === "rock")) {
-        // console.log("Computer wins!")
         return "Computer wins!";
     }
     if ((computerSelection === "rock" && playerSelection === "paper") || (
         computerSelection === "scissors" && playerSelection === "rock") || (
         computerSelection === "paper" && playerSelection === "scissors")) {
-        // console.log("Player wins!")
         return "Player wins!";
     }
     
 }
+
+
+
+
+
+
 
 computerSelection = getComputerChoice();
 playerSelection = getPlayerChoice();
@@ -47,8 +50,8 @@ playerSelection = getPlayerChoice();
 console.log(`Player choice: ${playerSelection}`)
 console.log(`Computer choice: ${computerSelection}`)
 
-playGame(computerSelection, playerSelection);
-console.log(playGame(computerSelection, playerSelection))
+playRound(computerSelection, playerSelection);
+console.log(playRound(computerSelection, playerSelection))
 
 
 
