@@ -1,7 +1,7 @@
 let computerSelection;
 let playerSelection;
 
-
+// Function to get players choice
 let getPlayerChoice = () => {
     // USER ENTERS INPUTS BELOW //
     let userInput = "rock";
@@ -10,7 +10,7 @@ let getPlayerChoice = () => {
 }
 
 
-
+// Function to get computers choice
 let getComputerChoice = () => {
     let computerGuess = Math.floor((Math.random()*3))+1;
     if (computerGuess === 1) {
@@ -20,6 +20,7 @@ let getComputerChoice = () => {
     } else return "scissors";
 }
 
+// Function to play a round of the game
 let playGame = (computerSelection, playerSelection) => {
     console.log(`Player choice: ${playerSelection}`)
     console.log(`Computer choice: ${computerSelection}`)
@@ -39,9 +40,6 @@ let playGame = (computerSelection, playerSelection) => {
     }
     
 }
-
-
-
 
 computerSelection = getComputerChoice();
 playerSelection = getPlayerChoice();
