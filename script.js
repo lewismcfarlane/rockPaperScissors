@@ -1,6 +1,7 @@
 let computerSelection;
 let playerSelection;
 
+
 // Function to get players choice
 let getPlayerChoice = () => {
     // USER ENTERS INPUTS BELOW //
@@ -37,6 +38,14 @@ let playRound = (computerSelection, playerSelection) => {
     }
     
 }
+// Function to display in console the results and player's choices
+let displayResults = () => {
+let result = playRound(computerSelection, playerSelection)
+console.log(`Player choice: ${playerSelection}
+Computer choice: ${computerSelection}
+${result}`)
+    
+}
 
 // Function to play the game for 5 rounds
 let playGame = () => {
@@ -44,10 +53,7 @@ let playGame = () => {
     playerSelection = getPlayerChoice();
 
     playRound(computerSelection, playerSelection);
-    // Console log gives the game results // 
-    console.log(`Player choice: ${playerSelection}`)
-    console.log(`Computer choice: ${computerSelection}`)
-    console.log(playRound(computerSelection, playerSelection))
+    displayResults();
     
 }
 
