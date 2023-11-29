@@ -27,12 +27,12 @@ let playRound = (computerSelection, playerSelection) => {
     if ((computerSelection === "rock" && playerSelection === "scissors") || (
         computerSelection === "scissors" && playerSelection === "paper") || (
         computerSelection === "paper" && playerSelection === "rock")) {
-        return "Computer wins!";
+        return "The computer wins this round!";
     }
     if ((computerSelection === "rock" && playerSelection === "paper") || (
         computerSelection === "scissors" && playerSelection === "rock") || (
         computerSelection === "paper" && playerSelection === "scissors")) {
-        return "Player wins!";
+        return "You win this round!";
     }
     
 }
@@ -54,7 +54,7 @@ let groupedPlayRound = () => {
     return playRound(computerSelection, playerSelection);
 }
 
-// Function to play the game for 5 rounds
+// Function to play the game for 5 rounds //
 let playGame = () => {
     let playerScore = 0;
     let computerScore = 0;
@@ -63,14 +63,14 @@ let playGame = () => {
         console.log(`Round ${i+1}. Player score: ${playerScore} Computer Score: ${computerScore}`);
         groupedPlayRound();
         let result = playRound(computerSelection, playerSelection)
-        if (result === "Player wins!") {
+        if (result === "You win this round!") {
             playerScore += 1;
         } 
-        if (result === "Computer wins!") {
+        if (result === "The computer wins this round!") {
             computerScore += 1;
         }
     }
-
+    // Check score to determine the winner of the game //
     if (computerScore > playerScore) {
         winner = "You lost!";
     } else if (computerScore < playerScore) {
