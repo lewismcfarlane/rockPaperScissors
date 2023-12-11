@@ -39,6 +39,7 @@ startGameButton.addEventListener('click', (event) => {
     playButtonArea.appendChild(createPlayButton(`Rock`));
     playButtonArea.appendChild(createPlayButton(`Paper`));
     playButtonArea.appendChild(createPlayButton(`Scissors`));
+    computerSelection = getComputerChoice();
 })
 
 
@@ -80,10 +81,7 @@ let roundResult = (computerSelection, playerSelection) => {
 }
 
 
-roundResult();
-console.log(playerSelection);
-console.log(computerSelection);
-console.log(roundResult());
+
 
 
 // let playGame = () => {
