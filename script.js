@@ -1,5 +1,9 @@
 let computerSelection;
 let playerSelection;
+let playerWin;
+let playerLose;
+let draw;
+
 
 // Function to get players choice
 let getPlayerChoice = () => {
