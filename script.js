@@ -4,14 +4,11 @@ let playerWin = "win";
 let playerLose = "lose";
 let draw = "draw";
 
+// Hold variables
+// let computerSelection = getComputerChoice();
+// let playerSelection = getPlayerChoice();
 
-// // Function to get players choice
-// let getPlayerChoice = () => {
-//     // USER ENTERS INPUTS BELOW //
-//     let userInput = prompt("Rock paper scissors?");
-//     // USER ENTERS INPUT ABOVE //
-//     return userInput.toLowerCase();
-// }
+
 
 // Function to get computers choice
 let getComputerChoice = () => {
@@ -23,8 +20,49 @@ let getComputerChoice = () => {
     } else return "scissors";
 }
 
+// startGameButton DOM creation
+
+// Variable to target the startGameButton
+let startGameButton = document.querySelector('#startGameButton');
+
+// Variable to target the playButtonArea container
+let playButtonArea = document.querySelector('#playButtonArea');
+
+// Function to create play button
+function createPlayButton(gameChoice) {
+    let playButton = document.createElement('button');
+    playButton.textContent = gameChoice;
+    return playButton;
+}
+// Event handler to add play buttons
+startGameButton.addEventListener('click', (event) => {
+    playButtonArea.appendChild(createPlayButton(`Rock`));
+    playButtonArea.appendChild(createPlayButton(`Paper`));
+    playButtonArea.appendChild(createPlayButton(`Scissors`));
+})
+
+
+
+// Event handler to listen to playButton clicks to assign playerSelection
+playButtonArea.addEventListener('click', (event) => {
+    let playButtons = event.target;
+
+    switch(playButtons.id) {
+        case 'rockPlayButton':
+            playerSelection = "rock";
+            break;
+        case 'paperPlayButton':
+            playerSelection = "paper";
+            break;
+        case 'scissorsPlayButton':
+            playerSelection = "scissors";
+            break;
+    }
+    
+})
+
 // Function to play a round of the game
-let playRound = (computerSelection, playerSelection) => {
+let roundResult = (computerSelection, playerSelection) => {
     if (computerSelection === playerSelection) {
         return draw;
     }
@@ -37,53 +75,17 @@ let playRound = (computerSelection, playerSelection) => {
         computerSelection === "scissors" && playerSelection === "rock") || (
         computerSelection === "paper" && playerSelection === "scissors")) {
         return playerWin;
-    }    
+    }
+       
 }
 
-let playButtonArea = document.querySelector('#playButtonArea');
 
-playButtonArea.addEventListener('click', (event) => {
-    let playButtons = event.target;
-
-    switch(playButtons.id) {
-        case 'rockPlayButton':
-            
-            break;
-        case 'paperPlayButton':
-            
-            break;
-        case 'scissorsPlayButton':
-            
-            break;
-    }
-})
+roundResult();
+console.log(playerSelection);
+console.log(computerSelection);
+console.log(roundResult());
 
 
-
-
-
-
-
-
-// // Function to display in console the results and player's choices
-// let displayResults = () => {
-// let result = playRound(computerSelection, playerSelection)
-// console.log(`Player choice: ${playerSelection}
-// Computer choice: ${computerSelection}
-// ${result}`)
-// }
-
-// // Function to group one round and displaying the results to console
-// let groupedPlayRound = () => {
-//     computerSelection = getComputerChoice();
-//     playerSelection = getPlayerChoice();
-//     // playRound(computerSelection, playerSelection);
-//     displayResults();
-
-//     return playRound(computerSelection, playerSelection);
-// }
-
-// // Function to play the game for 5 rounds //
 // let playGame = () => {
 //     let playerScore = 0;
 //     let computerScore = 0;
@@ -114,7 +116,37 @@ playButtonArea.addEventListener('click', (event) => {
 // }
 
 
-// const startGame = document.getElementById("startGameButton");
-// startGame.addEventListener("click", playGame);
+
+
+
+
+
+
+
+
+
+
+// // Function to display in console the results and player's choices
+// let displayResults = () => {
+// let result = playRound(computerSelection, playerSelection)
+// console.log(`Player choice: ${playerSelection}
+// Computer choice: ${computerSelection}
+// ${result}`)
+// }
+
+// // Function to group one round and displaying the results to console
+// let groupedPlayRound = () => {
+//     computerSelection = getComputerChoice();
+//     playerSelection = getPlayerChoice();
+//     // playRound(computerSelection, playerSelection);
+//     displayResults();
+
+//     return playRound(computerSelection, playerSelection);
+// }
+
+
+
+
+
 
 
