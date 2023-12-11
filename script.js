@@ -37,55 +37,55 @@ let playRound = (computerSelection, playerSelection) => {
     
 }
 // Function to display in console the results and player's choices
-let displayResults = () => {
-let result = playRound(computerSelection, playerSelection)
-console.log(`Player choice: ${playerSelection}
-Computer choice: ${computerSelection}
-${result}`)
-    
-}
-// Function to group one round and displaying the results to console
-let groupedPlayRound = () => {
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
-    // playRound(computerSelection, playerSelection);
-    displayResults();
+// let displayResults = () => {
+// let result = playRound(computerSelection, playerSelection)
+// console.log(`Player choice: ${playerSelection}
+// Computer choice: ${computerSelection}
+// ${result}`)
+// }
 
-    return playRound(computerSelection, playerSelection);
-}
+// Function to group one round and displaying the results to console
+// let groupedPlayRound = () => {
+//     computerSelection = getComputerChoice();
+//     playerSelection = getPlayerChoice();
+//     // playRound(computerSelection, playerSelection);
+//     displayResults();
+
+//     return playRound(computerSelection, playerSelection);
+// }
 
 // Function to play the game for 5 rounds //
-let playGame = () => {
-    let playerScore = 0;
-    let computerScore = 0;
-    let winner;
-    for (let i = 0; i < 5; i++) {
-        console.log(`Round ${i+1}. Player score: ${playerScore} Computer Score: ${computerScore}`);
-        groupedPlayRound();
-        let result = playRound(computerSelection, playerSelection)
-        if (result === "You win this round!") {
-            playerScore += 1;
-        } 
-        if (result === "The computer wins this round!") {
-            computerScore += 1;
-        }
-    }
-    // Check score to determine the winner of the game //
-    if (computerScore > playerScore) {
-        winner = "You lost!";
-    } else if (computerScore < playerScore) {
-        winner = "You win!"
-    } else {
-        winner = "It was a tie!"
-    }
-    console.log('');
-    console.log('The final scores are...');
-    console.log(`Player score: ${playerScore} Computer score: ${computerScore}`)
-    console.log(`${winner}`)
-}
+// let playGame = () => {
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     let winner;
+//     for (let i = 0; i < 5; i++) {
+//         console.log(`Round ${i+1}. Player score: ${playerScore} Computer Score: ${computerScore}`);
+//         groupedPlayRound();
+//         let result = playRound(computerSelection, playerSelection)
+//         if (result === "You win this round!") {
+//             playerScore += 1;
+//         } 
+//         if (result === "The computer wins this round!") {
+//             computerScore += 1;
+//         }
+//     }
+//     // Check score to determine the winner of the game //
+//     if (computerScore > playerScore) {
+//         winner = "You lost!";
+//     } else if (computerScore < playerScore) {
+//         winner = "You win!"
+//     } else {
+//         winner = "It was a tie!"
+//     }
+//     console.log('');
+//     console.log('The final scores are...');
+//     console.log(`Player score: ${playerScore} Computer score: ${computerScore}`)
+//     console.log(`${winner}`)
+// }
 
 
-const startGame = document.getElementById("startGameButton");
-startGame.addEventListener("click", playGame);
+// const startGame = document.getElementById("startGameButton");
+// startGame.addEventListener("click", playGame);
 
 
