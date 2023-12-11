@@ -44,29 +44,33 @@ startGameButton.addEventListener('click', (event) => {
         playButtonArea.appendChild(createPlayButton(`Paper`));
         playButtonArea.appendChild(createPlayButton(`Scissors`));
         computerSelection = getComputerChoice();
+        console.log(`Game Started`);
+        console.log(`Computer's choice: ${computerSelection}`);
     
 })
 
 // Event handler to listen to playButton clicks to assign playerSelection
-playButtonArea.addEventListener('click', (event) => {
-    let playButtons = event.target;
+function getPlayerChoice() {
+    playButtonArea.addEventListener('click', (event) => {
+        let playButtons = event.target;
 
-    switch(playButtons.id) {
-        case 'RockPlayButton':
-            playerSelection = "rock";
-            console.log(playerSelection);
-            break;
-        case 'PaperPlayButton':
-            playerSelection = "paper";
-            console.log(playerSelection);
-            break;
-        case 'ScissorsPlayButton':
-            playerSelection = "scissors";
-            console.log(playerSelection);
-            break;
-    }
-    
-})
+        switch(playButtons.id) {
+            case 'RockPlayButton':
+                playerSelection = "rock";
+                console.log(`Player's choice: ${playerSelection}`);
+                break;
+            case 'PaperPlayButton':
+                playerSelection = "paper";
+                console.log(`Player's choice: ${playerSelection}`);
+                break;
+            case 'ScissorsPlayButton':
+                playerSelection = "scissors";
+                console.log(`Player's choice: ${playerSelection}`);
+                break;
+        }
+        
+    })
+}
 
 // Function to play a round of the game
 let getRoundResult = (computerSelection, playerSelection) => {
@@ -82,9 +86,15 @@ let getRoundResult = (computerSelection, playerSelection) => {
         computerSelection === "scissors" && playerSelection === "rock") || (
         computerSelection === "paper" && playerSelection === "scissors")) {
         return playerWin;
-    }
-       
+    }       
 }
+
+
+
+getPlayerChoice();
+
+
+
 
 
 
