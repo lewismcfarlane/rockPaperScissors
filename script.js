@@ -11,6 +11,13 @@ let playButton;
 let gameOverMessage;
 
 
+// Query selector variables
+let startGameButton = document.querySelector('#startGameButton');
+let playButtonArea = document.querySelector('#playButtonArea');
+let startGameButtonArea = document.querySelector(`#startGameButtonArea`);
+let resultsArea = document.querySelector(`#resultsArea`);
+let scoreboard = document.createElement('span');
+
 // Function to get computers choice
 let getComputerChoice = () => {
     let computerGuess = Math.floor((Math.random()*3))+1;
@@ -20,21 +27,6 @@ let getComputerChoice = () => {
         return "paper"
     } else return "scissors";
 }
-
-// startGameButton DOM creation
-
-// Variable to target the startGameButton
-let startGameButton = document.querySelector('#startGameButton');
-
-// Variable to target the playButtonArea container
-let playButtonArea = document.querySelector('#playButtonArea');
-
-// Variable to target startGameButton container
-let startGameButtonArea = document.querySelector(`#startGameButtonArea`);
-
-// Target resultsArea
-
-let resultsArea = document.querySelector(`#resultsArea`);
 
 // Function to create play button
 function createPlayButton(gameChoice) {
@@ -72,109 +64,28 @@ startGameButton.addEventListener('click', (event) => {
         // console.log(`Computer's choice: ${computerSelection}`);
     
 })
-
-let scoreboard = document.createElement('span');
-
 // Event handler to listen to playButton clicks to assign playerSelection
 function getPlayerChoice() {
     playButtonArea.addEventListener('click', (event) => {
-        let winner;
-        
-        
         let playButtons = event.target;
-        let result = getRoundResult(computerSelection, playerSelection);
         switch(playButtons.id) {
             case 'RockPlayButton':
                 playerSelection = "rock";
-                console.log(`Player's choice: ${playerSelection}`);
-                computerSelection = getComputerChoice();
-                console.log(`Computers's choice: ${computerSelection}`);
-                getRoundResult(computerSelection, playerSelection);
-                console.log(result);
+                playGame();
                 break;
             case 'PaperPlayButton':
                 playerSelection = "paper";
-                console.log(`Player's choice: ${playerSelection}`);
-                computerSelection = getComputerChoice();
-                console.log(`Computers's choice: ${computerSelection}`);
-                getRoundResult(computerSelection, playerSelection);
-                console.log(result);
+                playGame();
                 break;
             case 'ScissorsPlayButton':
                 playerSelection = "scissors";
-                round += 1;
-                computerSelection = getComputerChoice();
-                getRoundResult(computerSelection, playerSelection);
-                if (result === playerWin) {
-                    playerScore += 1;
-                    gameInfoMessage.textContent = `Player wins!`
-                    scoreboard.textContent = `Player score: ${playerScore}   Computer score: ${computerScore}`;
-                }
-                if (result === playerLose) {
-                    computerScore +=1;
-                    gameInfoMessage.textContent = `Computer wins!`
-                    scoreboard.textContent = `Player score: ${playerScore}   Computer score: ${computerScore}`;
-                }
-            
-                if (result === draw) gameInfoMessage.textContent = `It was a draw!`
-                if (playerScore === 5) winner = "You win";
-                if (computerScore === 5) winner = "The Computer wins";
-                if (playerScore === 5 || computerScore === 5) {
-                    console.log('Game over');
-                    while (playButtonArea.firstChild) {
-                        playButtonArea.removeChild(playButtonArea.firstChild);
-                    }
-                    startGameButtonArea.appendChild(startGameButton);
-                    let gameOverMessage = document.createElement('p');
-                    gameOverMessage.textContent = `Game over! ${winner} after ${round} rounds!`
-                    resultsArea.appendChild(gameOverMessage);
-                }
+                console.log('click scissor')
+                playGame();
                 break;
         }
-        
     })
+    computerSelection = getComputerChoice();
 }
-
-// function playGame() {
-//     round += 1;
-//     computerSelection = getComputerChoice();
-//     getRoundResult(computerSelection, playerSelection);
-//     if (result === playerWin) {
-//         playerScore += 1;
-//         gameInfoMessage.textContent = `Player wins!`
-//         scoreboard.textContent = `Player score: ${playerScore}   Computer score: ${computerScore}`;
-//     }
-//     if (result === playerLose) {
-//         computerScore +=1;
-//         gameInfoMessage.textContent = `Computer wins!`
-//         scoreboard.textContent = `Player score: ${playerScore}   Computer score: ${computerScore}`;
-//     }
-
-//     if (result === draw) gameInfoMessage.textContent = `It was a draw!`
-//     if (playerScore === 5) winner = "You win";
-//     if (computerScore === 5) winner = "The Computer wins";
-//     if (playerScore === 5 || computerScore === 5) {
-//         console.log('Game over');
-//         while (playButtonArea.firstChild) {
-//             playButtonArea.removeChild(playButtonArea.firstChild);
-//         }
-//         startGameButtonArea.appendChild(startGameButton);
-//         let gameOverMessage = document.createElement('p');
-//         gameOverMessage.textContent = `Game over! ${winner} after ${round} rounds!`
-//         resultsArea.appendChild(gameOverMessage);
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-
 
 // Function to play a round of the game
 let getRoundResult = (computerSelection, playerSelection) => {
@@ -193,99 +104,45 @@ let getRoundResult = (computerSelection, playerSelection) => {
     }       
 }
 
+// Function to play game: calculates winner of each round and adds to the round and score
+function playGame() {
+    let winner;
+    let result = getRoundResult(computerSelection, playerSelection);
+    round += 1;
+    // computerSelection = getComputerChoice();
+    getRoundResult(computerSelection, playerSelection);
+
+    
+    if (result === draw) gameInfoMessage.textContent = `It was a draw!`
+    if (result === playerWin) {
+        playerScore += 1;
+        gameInfoMessage.textContent = `Player wins!`
+        scoreboard.textContent = `Player score: ${playerScore}   Computer score: ${computerScore}`;
+    }
+    if (result === playerLose) {
+        computerScore +=1;
+        gameInfoMessage.textContent = `Computer wins!`
+        scoreboard.textContent = `Player score: ${playerScore}   Computer score: ${computerScore}`;
+    }
+
+
+
+
+    
+    if (playerScore === 5) winner = "You win";
+    if (computerScore === 5) winner = "The Computer wins";
+    if (playerScore === 5 || computerScore === 5) {
+        console.log('Game over');
+        while (playButtonArea.firstChild) {
+            playButtonArea.removeChild(playButtonArea.firstChild);
+        }
+        startGameButtonArea.appendChild(startGameButton);
+        let gameOverMessage = document.createElement('p');
+        gameOverMessage.textContent = `Game over! ${winner} after ${round} rounds!`
+        resultsArea.appendChild(gameOverMessage);
+    }
+}
+
+// Calling this function to listen for which button the user clicks
 getPlayerChoice();
-
-// function playGame() {
-//     let playerScore = 0;
-//     let computerScore = 0;
-//     let result = getRoundResult(computerSelection, playerSelection);
-//     let scoreboard = document.createElement('span');
-
-
-//     while (playerScore < 5 || computerScore < 5) {
-//         console.log(`player: ${playerScore} computer: ${computerScore}`)
-//         getPlayerChoice();
-//         getRoundResult();
-//         if (result === playerWin) {
-//             playerScore += 1;
-//         }
-//         if (result === playerLose) {
-//             computerScore += 1;
-//         }
-        
-//     }
-
-// }
-
-// playGame();
-
-
-
-
-
-
-
-// let playGame = () => {
-//     let playerScore = 0;
-//     let computerScore = 0;
-//     let winner;
-//     for (let i = 0; i < 5; i++) {
-//         console.log(`Round ${i+1}. Player score: ${playerScore} Computer Score: ${computerScore}`);
-//         groupedPlayRound();
-//         let result = playRound(computerSelection, playerSelection)
-//         if (result === playerWin) {
-//             playerScore += 1;
-//         } 
-//         if (result === playerLose) {
-//             computerScore += 1;
-//         }
-//     }
-//     // Check score to determine the winner of the game //
-//     if (computerScore > playerScore) {
-//         winner = "You lost!";
-//     } else if (computerScore < playerScore) {
-//         winner = "You win!"
-//     } else {
-//         winner = "It was a tie!"
-//     }
-//     console.log('');
-//     console.log('The final scores are...');
-//     console.log(`Player score: ${playerScore} Computer score: ${computerScore}`)
-//     console.log(`${winner}`)
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-// // Function to display in console the results and player's choices
-// let displayResults = () => {
-// let result = playRound(computerSelection, playerSelection)
-// console.log(`Player choice: ${playerSelection}
-// Computer choice: ${computerSelection}
-// ${result}`)
-// }
-
-// // Function to group one round and displaying the results to console
-// let groupedPlayRound = () => {
-//     computerSelection = getComputerChoice();
-//     playerSelection = getPlayerChoice();
-//     // playRound(computerSelection, playerSelection);
-//     displayResults();
-
-//     return playRound(computerSelection, playerSelection);
-// }
-
-
-
-
-
-
 
