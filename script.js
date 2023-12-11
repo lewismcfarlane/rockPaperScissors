@@ -39,6 +39,32 @@ let playRound = (computerSelection, playerSelection) => {
         return playerWin;
     }    
 }
+
+let playButtonArea = document.querySelector('#playButtonArea');
+
+playButtonArea.addEventListener('click', (event) => {
+    let playButtons = event.target;
+
+    switch(playButtons.id) {
+        case 'rockPlayButton':
+            
+            break;
+        case 'paperPlayButton':
+            
+            break;
+        case 'scissorsPlayButton':
+            
+            break;
+    }
+})
+
+
+
+
+
+
+
+
 // // Function to display in console the results and player's choices
 // let displayResults = () => {
 // let result = playRound(computerSelection, playerSelection)
