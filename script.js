@@ -3,11 +3,7 @@ let playerSelection;
 let playerWin = "win";
 let playerLose = "lose";
 let draw = "draw";
-
-// Hold variables
-// let computerSelection = getComputerChoice();
-// let playerSelection = getPlayerChoice();
-
+let isGamePlaying = false;
 
 
 // Function to get computers choice
@@ -28,42 +24,52 @@ let startGameButton = document.querySelector('#startGameButton');
 // Variable to target the playButtonArea container
 let playButtonArea = document.querySelector('#playButtonArea');
 
+// Variable to target startGameButton container
+let startGameButtonArea = document.querySelector(`#startGameButtonArea`);
+
 // Function to create play button
 function createPlayButton(gameChoice) {
     let playButton = document.createElement('button');
     playButton.textContent = gameChoice;
+    playButton.id = (gameChoice + 'PlayButton');
     return playButton;
 }
-// Event handler to add play buttons
+// Event handler to add play buttons and remove start game button
 startGameButton.addEventListener('click', (event) => {
-    playButtonArea.appendChild(createPlayButton(`Rock`));
-    playButtonArea.appendChild(createPlayButton(`Paper`));
-    playButtonArea.appendChild(createPlayButton(`Scissors`));
-    computerSelection = getComputerChoice();
+        startGameButtonArea.removeChild(startGameButton);
+        let gameInfoMessage = document.createElement('p');
+        gameInfoMessage.textContent = "Select a choice!";
+        playButtonArea.appendChild(gameInfoMessage);
+        playButtonArea.appendChild(createPlayButton(`Rock`));
+        playButtonArea.appendChild(createPlayButton(`Paper`));
+        playButtonArea.appendChild(createPlayButton(`Scissors`));
+        computerSelection = getComputerChoice();
+    
 })
-
-
 
 // Event handler to listen to playButton clicks to assign playerSelection
 playButtonArea.addEventListener('click', (event) => {
     let playButtons = event.target;
 
     switch(playButtons.id) {
-        case 'rockPlayButton':
+        case 'RockPlayButton':
             playerSelection = "rock";
+            console.log(playerSelection);
             break;
-        case 'paperPlayButton':
+        case 'PaperPlayButton':
             playerSelection = "paper";
+            console.log(playerSelection);
             break;
-        case 'scissorsPlayButton':
+        case 'ScissorsPlayButton':
             playerSelection = "scissors";
+            console.log(playerSelection);
             break;
     }
     
 })
 
 // Function to play a round of the game
-let roundResult = (computerSelection, playerSelection) => {
+let getRoundResult = (computerSelection, playerSelection) => {
     if (computerSelection === playerSelection) {
         return draw;
     }
@@ -79,6 +85,8 @@ let roundResult = (computerSelection, playerSelection) => {
     }
        
 }
+
+
 
 
 
