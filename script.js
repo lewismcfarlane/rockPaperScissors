@@ -5,13 +5,13 @@ let playerLose = "lose";
 let draw = "draw";
 
 
-// Function to get players choice
-let getPlayerChoice = () => {
-    // USER ENTERS INPUTS BELOW //
-    let userInput = prompt("Rock paper scissors?");
-    // USER ENTERS INPUT ABOVE //
-    return userInput.toLowerCase();
-}
+// // Function to get players choice
+// let getPlayerChoice = () => {
+//     // USER ENTERS INPUTS BELOW //
+//     let userInput = prompt("Rock paper scissors?");
+//     // USER ENTERS INPUT ABOVE //
+//     return userInput.toLowerCase();
+// }
 
 // Function to get computers choice
 let getComputerChoice = () => {
