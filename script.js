@@ -1,8 +1,8 @@
 let computerSelection;
 let playerSelection;
-let playerWin;
-let playerLose;
-let draw;
+let playerWin = "win";
+let playerLose = "lose";
+let draw = "draw";
 
 
 // Function to get players choice
@@ -26,21 +26,20 @@ let getComputerChoice = () => {
 // Function to play a round of the game
 let playRound = (computerSelection, playerSelection) => {
     if (computerSelection === playerSelection) {
-        return "It's a tie!";
+        return draw;
     }
     if ((computerSelection === "rock" && playerSelection === "scissors") || (
         computerSelection === "scissors" && playerSelection === "paper") || (
         computerSelection === "paper" && playerSelection === "rock")) {
-        return "The computer wins this round!";
+        return playerLose;
     }
     if ((computerSelection === "rock" && playerSelection === "paper") || (
         computerSelection === "scissors" && playerSelection === "rock") || (
         computerSelection === "paper" && playerSelection === "scissors")) {
-        return "You win this round!";
-    }
-    
+        return playerWin;
+    }    
 }
-// Function to display in console the results and player's choices
+// // Function to display in console the results and player's choices
 // let displayResults = () => {
 // let result = playRound(computerSelection, playerSelection)
 // console.log(`Player choice: ${playerSelection}
@@ -48,7 +47,7 @@ let playRound = (computerSelection, playerSelection) => {
 // ${result}`)
 // }
 
-// Function to group one round and displaying the results to console
+// // Function to group one round and displaying the results to console
 // let groupedPlayRound = () => {
 //     computerSelection = getComputerChoice();
 //     playerSelection = getPlayerChoice();
@@ -58,7 +57,7 @@ let playRound = (computerSelection, playerSelection) => {
 //     return playRound(computerSelection, playerSelection);
 // }
 
-// Function to play the game for 5 rounds //
+// // Function to play the game for 5 rounds //
 // let playGame = () => {
 //     let playerScore = 0;
 //     let computerScore = 0;
@@ -67,10 +66,10 @@ let playRound = (computerSelection, playerSelection) => {
 //         console.log(`Round ${i+1}. Player score: ${playerScore} Computer Score: ${computerScore}`);
 //         groupedPlayRound();
 //         let result = playRound(computerSelection, playerSelection)
-//         if (result === "You win this round!") {
+//         if (result === playerWin) {
 //             playerScore += 1;
 //         } 
-//         if (result === "The computer wins this round!") {
+//         if (result === playerLose) {
 //             computerScore += 1;
 //         }
 //     }
