@@ -1,9 +1,8 @@
 let computerSelection;
 let playerSelection;
-let playerWin = "win";
-let playerLose = "lose";
-let draw = "draw";
-let isGamePlaying = false;
+const playerWin = "win";
+const playerLose = "lose";
+const draw = "draw";
 let playerScore;
 let computerScore;
 let gameInfoMessage;
@@ -71,20 +70,23 @@ function getPlayerChoice() {
         switch(playButtons.id) {
             case 'RockPlayButton':
                 playerSelection = "rock";
+                computerSelection = getComputerChoice();
                 playGame();
                 break;
             case 'PaperPlayButton':
                 playerSelection = "paper";
+                computerSelection = getComputerChoice();
                 playGame();
                 break;
             case 'ScissorsPlayButton':
                 playerSelection = "scissors";
+                computerSelection = getComputerChoice();
                 console.log('click scissor')
                 playGame();
                 break;
         }
     })
-    computerSelection = getComputerChoice();
+    
 }
 
 // Function to play a round of the game
